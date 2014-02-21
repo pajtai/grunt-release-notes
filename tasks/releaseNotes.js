@@ -19,7 +19,6 @@ module.exports = function(grunt) {
             notes = '',
             last = '',
             files = [];
-
         grunt.file.recurse(directory, function(file) {
             var name = path.basename(file, '.md'),
                 separatorAt = name.indexOf(versionSeparator),
@@ -60,11 +59,12 @@ module.exports = function(grunt) {
                 name:name,
                 notesSuffix:notesSuffix
             };
-
+            console.log(data);
             notes += grunt.template.process('* <%= version %> - <%= date %> - ' +
-                '[<%= updateType %>](<%= baseLinkPath%><%= directory %>/<%= name %>.<%= notesSuffix %>)\n', data);
+                '[<%= updateType %>](<%= baseLinkPath%><%= directory %>/<%= name %>.<%= notesSuffix %>)\n', {data:data});
+            console.log(':' + notes);
         });
-        if (grunt.config.get('pkg').version !== last) {
+        if (grunt.file.readJSON('package.json').version !== last) {
             grunt.fatal('Latest release notes and package.version do not match');
         }
         grunt.log.writeln(notes);
