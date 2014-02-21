@@ -40,6 +40,8 @@ grunt.initConfig({
     * default : `_`
 * `baseLinkPath` - The base of the path that will be used to generate the links to the release notes. For example : `https://github.com/Solid-Interactive/masseuse/blob/master/`
     * default : `''`
+* `notesField` - The field on `grunt.config.releaseNotes` which will be used to create the generate release notes string.
+    * default : `notes`
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
