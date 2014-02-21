@@ -11,52 +11,14 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
     // Actually load this plugin's task(s).
+
     grunt.loadTasks('tasks');
 
-    // configurable paths
-    var config = {
-        app: 'app',
-
-        // These config values are the defaults for build_gh_pages,
-        // so they could be skipped in this case,
-        // but other values can be used
-        build_branch: 'gh-pages',
-        dist: 'dist',
-        pull: true,
-        exclude: "excluded"
-    };
-
     grunt.initConfig({
-        config: config,
-        clean: {
-            short : ['dist']
+        releaseNotes : {
+            readmePath : 'README.md',
+            templatePath : 'templates/README.template.md'
         },
-        build_gh_pages: {
-            example: {
-                options: {
-                    build_branch: "<%= config.build_branch %>",
-                    dist: "<%= config.dist %>",
-                    exclude: "<%= config.exclude %>"
-                }
-            }
-        },
-        copy: {
-            build: {
-                files: [
-                    {expand: true, cwd: './', src: ['README.md'], dest: 'dist/'}
-                ]
-            }
-        }
+        warning : 'Do not modify directly. This file is compiled from a template.'
     });
-
-    grunt.registerTask("bumpBuild", function () {
-        var build = ".build";
-        grunt.file.write(build, parseInt(grunt.file.read(build), 10) + 1);
-    });
-
-    grunt.registerTask("build", [
-        'clean',
-        'copy',
-        'build_gh_pages:example'
-    ]);
 };

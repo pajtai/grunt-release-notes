@@ -2,19 +2,21 @@
 module.exports = function(grunt) {
     'use strict';
 
-    var versionSort = require('./versionSort'),
-        config = require('./config'),
-        versionSeparator = grunt.config.get('releaseNotes.fileSeparator') || config.versionSeparator,
-        directory = grunt.config.get('releaseNotes.notesDirectory') || config.notesDirectory,
-        baseLinkPath = grunt.config.get('releaseNotes.baseLinkPath') || '',
-        notesSuffix = grunt.config.get('releaseNotes.notesSuffix') || 'md',
-        notesField = grunt.config.get('releaseNotes.notesField') || 'notes',
-        path = require('path'),
-        _ = require('lodash');
-            // grunt.util._ is depracated
-
     grunt.registerTask('releaseNotes', 'read in files to make release notes', function() {
-        var types = ['backward incompatibilities', 'features', 'patches'],
+
+        var versionSort = require('./versionSort'),
+            config = require('./config'),
+            versionSeparator = grunt.config.get('releaseNotes.fileSeparator') || config.versionSeparator,
+            directory = grunt.config.get('releaseNotes.notesDirectory') || config.notesDirectory,
+            baseLinkPath = grunt.config.get('releaseNotes.baseLinkPath') || '',
+            notesSuffix = grunt.config.get('releaseNotes.notesSuffix') || 'md',
+            notesField = grunt.config.get('releaseNotes.notesField') || 'notes',
+            readmePath = grunt.config.get('releaseNotes.readmePath'),
+            templatePath = grunt.config.get('releaseNotes.templatePath'),
+            path = require('path'),
+            _ = require('lodash'),
+        // grunt.util._ is depracated
+            types = ['backward incompatibilities', 'features', 'patches'],
             previous = ['0','0','0'],
             notes = '',
             last = '',
@@ -36,7 +38,7 @@ module.exports = function(grunt) {
                 version = file.version,
                 date = file.date,
                 parts = file.parts,
-                updateType = '',
+                updateType = 'initial release',
                 data;
 
             last = version;
@@ -49,7 +51,6 @@ module.exports = function(grunt) {
             });
             previous = parts;
 
-            // TODO: use a grunt template for legibility
             data = {
                 version:version,
                 date:date,
@@ -59,15 +60,19 @@ module.exports = function(grunt) {
                 name:name,
                 notesSuffix:notesSuffix
             };
-            console.log(data);
             notes += grunt.template.process('* <%= version %> - <%= date %> - ' +
                 '[<%= updateType %>](<%= baseLinkPath%><%= directory %>/<%= name %>.<%= notesSuffix %>)\n', {data:data});
-            console.log(':' + notes);
         });
         if (grunt.file.readJSON('package.json').version !== last) {
             grunt.fatal('Latest release notes and package.version do not match');
         }
         grunt.log.writeln(notes);
         grunt.config.set('releaseNotes.' + notesField, notes);
+
+        if (readmePath && templatePath) {
+            grunt.file.write(readmePath,
+                grunt.template.process(
+                    grunt.file.read(templatePath)));
+        }
     });
 };

@@ -1,6 +1,12 @@
 # grunt-release-notes
+> A grunt plugin to manage creation of a release notes section in your README. See this repo for example usage.
 
-> Grunt plugin that will fail if the current package.json.version does not have a corresponding file in the release notes directory. The plugin will also generate a markdown unordered lists of links to version release notes with display dates.
+This is a single - not a multi - task.
+
+The task will fail if the current package.json.version does not have a corresponding file in the release notes directory.
+The plugin will also generate a markdown unordered list of links to version release notes with display dates which will
+be saved on `grunt.config.releaseNotes.notes`. The notes string can then be used to create the `README.md` from a `README.template`
+that uses grunt templating.
 
 _Comes with a companion task - `grunt notes:since` -  that will show the contents of your release notes files starting at one version and ending at another._
 
@@ -26,14 +32,14 @@ In your project's Gruntfile, add a section named `releaseNotes` to the data obje
 
 ```js
 grunt.initConfig({
-    releaseNotes: {
-        dir : 'release_notes'
+    releaseNotes : {
+        readmePath : 'README.md',
+        templatePath : 'templates/README.template.md'
     }
-})
+});
 ```
 
 ### Options
-
 * `notesDirectory` - The directory in which your release notes are stored.
     * default : `release_notes`
 * `versionSeparator` - The character used to separate the version number from the display date in the release notes file names.
@@ -42,10 +48,15 @@ grunt.initConfig({
     * default : `''`
 * `notesField` - The field on `grunt.config.releaseNotes` which will be used to create the generate release notes string.
     * default : `notes`
+* `readmePath` - If this field and `templatePath` are both defined, then the grunt template at `templatePath` will be used to generate the README at `readmePath` using `grunt.config` as the template data.
+    * default : `undefined`
+* `templatePath` - If this field and `readmePath` are both defined, then the grunt template at `templatePath` will be used to generate the README at `readmePath` using `grunt.config` as the template data.
+    * default : `undefined`
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release Notes
-
 <%= releaseNotes.notes %>
+
+_<%= warning %>_
