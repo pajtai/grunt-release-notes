@@ -1,0 +1,33 @@
+{
+    "name": "grunt-release-notes",
+    "version": "0.0.0",
+    "description": "Grunt plugin that will fail if the current package.json.version does not have a corresponding file in the release notes directory. The plugin will also generate a markdown unordered lists of links to version release notes with display dates.",
+    "main": " ",
+    "scripts": {
+        "test": "grunt test-cli"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Solid-Interactive/masseuse.git"
+    },
+    "keywords": [
+        "grunt",
+        "release notes"
+    ],
+    "author": "Peter Ajtai",
+    "license": "MIT",
+    "readmeFilename": "README.md",
+    "bugs": {
+        "url": "https://github.com/pajtai/grunt-release-notes/issues"
+    },
+    "peerDependencies": {
+        "grunt": "~0.4.0"
+    },
+    "dependencies" : {
+        "lodash": "2.4.1"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.0",
+        "matchdep": "0.3.0"
+    }
+}

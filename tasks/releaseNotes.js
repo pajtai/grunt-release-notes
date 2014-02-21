@@ -8,6 +8,7 @@ module.exports = function(grunt) {
         directory = grunt.config.get('releaseNotes.notesDirectory') || config.notesDirectory,
         baseLinkPath = grunt.config.get('releaseNotes.baseLinkPath') || '',
         notesSuffix = grunt.config.get('releaseNotes.notesSuffix') || 'md',
+        notesField = grunt.config.get('releaseNotes.notesField') || 'notes',
         path = require('path'),
         _ = require('lodash');
             // grunt.util._ is depracated
@@ -36,7 +37,8 @@ module.exports = function(grunt) {
                 version = file.version,
                 date = file.date,
                 parts = file.parts,
-                updateType = '';
+                updateType = '',
+                data;
 
             last = version;
             _.each(parts, function(value, index) {
@@ -49,13 +51,23 @@ module.exports = function(grunt) {
             previous = parts;
 
             // TODO: use a grunt template for legibility
-            notes += '* ' + version + ' - ' + date + ' - [' + updateType +
-                '](' + baseLinkPath + directory + '/' + name + '.' + notesSuffix + ')\n';
+            data = {
+                version:version,
+                date:date,
+                updateType:updateType,
+                baseLinkPath:baseLinkPath,
+                directory:directory,
+                name:name,
+                notesSuffix:notesSuffix
+            };
+
+            notes += grunt.template.process('* <%= version %> - <%= date %> - ' +
+                '[<%= updateType %>](<%= baseLinkPath%><%= directory %>/<%= name %>.<%= notesSuffix %>)\n', data);
         });
         if (grunt.config.get('pkg').version !== last) {
             grunt.fatal('Latest release notes and package.version do not match');
         }
         grunt.log.writeln(notes);
-        grunt.config.set('releaseNotes', notes);
+        grunt.config.set('releaseNotes.' + notesField, notes);
     });
 };
