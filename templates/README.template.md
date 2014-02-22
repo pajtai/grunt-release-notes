@@ -1,7 +1,7 @@
 # grunt-release-notes
 > A grunt plugin to manage creation of a release notes section in your README. See this repo for example usage.
 
-This is a single - not a multi - task.
+This is multi task, see [Gruntfile]() for example usage.
 
 The task will fail if the current package.json.version does not have a corresponding file in the release notes directory.
 The plugin will also generate a markdown unordered list of links to version release notes with display dates which will
@@ -44,14 +44,13 @@ grunt.initConfig({
     * default : `release_notes`
 * `versionSeparator` - The character used to separate the version number from the display date in the release notes file names.
     * default : `_`
-* `baseLinkPath` - The base of the path that will be used to generate the links to the release notes. For example : `https://github.com/Solid-Interactive/masseuse/blob/master/`
-    * default : `''`
 * `notesField` - The field on `grunt.config.releaseNotes` which will be used to create the generate release notes string.
     * default : `notes`
-* `readmePath` - If this field and `templatePath` are both defined, then the grunt template at `templatePath` will be used to generate the README at `readmePath` using `grunt.config` as the template data.
-    * default : `undefined`
-* `templatePath` - If this field and `readmePath` are both defined, then the grunt template at `templatePath` will be used to generate the README at `readmePath` using `grunt.config` as the template data.
-    * default : `undefined`
+
+### Task level fields
+* `src` - If this field and `readmePath` are both defined, then the grunt template at `templatePath` will be used to generate the README at `readmePath` using `grunt.config` as the template data.
+* `dst` - If this field and `templatePath` are both defined, then the grunt template at `templatePath` will be used to generate the README at `readmePath` using `grunt.config` as the template data.
+* `baseLinkPath` - The base of the path that will be used to generate the links to the release notes. For example : `https://github.com/Solid-Interactive/masseuse/blob/master/`
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
