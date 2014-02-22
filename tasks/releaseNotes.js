@@ -33,7 +33,7 @@ module.exports = function(grunt) {
             files.push({name: name, version: version, date: date, parts: parts});
         });
 
-        files = files.sort(versionSort);
+        files = files.sort(versionSort());
 
         _.each(files, function(file) {
             var name = file.name,
