@@ -1,6 +1,6 @@
 {
     "name": "grunt-release-notes",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Grunt plugin that will fail if the current package.json.version does not have a corresponding file in the release notes directory. The plugin will also generate a markdown unordered lists of links to version release notes with display dates.",
     "main": " ",
     "scripts": {

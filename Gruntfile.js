@@ -19,7 +19,7 @@ module.exports = function (grunt) {
             main : {
                 src : 'templates/README.template.md',
                 dest : 'README.md',
-                baseLinkPath : 'https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/'
+                baseLinkPath : 'https://github.com/pajtai/grunt-release-notes/tree/master/'
             }
         },
         warning : 'Do not modify directly. This file is compiled from a template.'
