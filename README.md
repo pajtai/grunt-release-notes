@@ -57,7 +57,8 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release Notes
-* 0.0.0 - 2014-02-20 - [initial release](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/release_notes/0.0.0_2014-02-20.md)
+* 0.0.0 - 2014-02-20 - [initial release](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.0.0_2014-02-20.md)
+* 0.0.1 - 2014-02-22 - [patches](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.0.1_2014-02-22.md)
 
 
 _Do not modify directly. This file is compiled from a template._
