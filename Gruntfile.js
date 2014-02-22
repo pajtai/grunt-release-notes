@@ -16,8 +16,9 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         releaseNotes : {
-            readmePath : 'README.md',
-            templatePath : 'templates/README.template.md'
+            src : 'templates/README.template.md',
+            dest : 'README.md',
+            baseLinkPath : 'http://test.com'
         },
         warning : 'Do not modify directly. This file is compiled from a template.'
     });
