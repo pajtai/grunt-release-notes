@@ -1,7 +1,8 @@
 # grunt-release-notes
 > A grunt plugin to manage creation of a release notes section in your README. See this repo for example usage.
 
-This is multi task, see [Gruntfile]() for example usage.
+This is multi task, see [Gruntfile](https://github.com/pajtai/grunt-release-notes/blob/master/Gruntfile.js#L18) and the "Release Notes" section
+at the bottom of this file for example usage.
 
 The task will fail if the current package.json.version does not have a corresponding file in the release notes directory.
 The plugin will also generate a markdown unordered list of links to version release notes with display dates which will
