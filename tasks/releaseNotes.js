@@ -2,8 +2,7 @@
 module.exports = function(grunt) {
     'use strict';
 
-    grunt.registerTask('releaseNotes', 'read in files to make release notes', function() {
-
+    grunt.registerMultiTask('releaseNotes', 'read in files to make release notes', function() {
         var config = require('./config'),
             options = this.options({
                 versionSeparator : config.versionSeparator,

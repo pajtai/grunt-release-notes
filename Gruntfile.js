@@ -16,9 +16,11 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         releaseNotes : {
-            src : 'templates/README.template.md',
-            dest : 'README.md',
-            baseLinkPath : 'http://test.com'
+            main : {
+                src : 'templates/README.template.md',
+                dest : 'README.md',
+                baseLinkPath : 'http://test.com'
+            }
         },
         warning : 'Do not modify directly. This file is compiled from a template.'
     });
