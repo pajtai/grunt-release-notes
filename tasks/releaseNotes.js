@@ -2,13 +2,75 @@
 module.exports = function(grunt) {
     'use strict';
 
+    var versionSort = require('./versionSort'),
+        path = require('path'),
+        _ = require('lodash'),
+        config = require('./config');
+
+    // Register simple tasks first, so that grunt doesn't look for the, "latest" config property
+    grunt.registerTask('releaseNotes:latest', function() {
+        var files = getFiles().sort(versionSort),
+            output = '',
+            file = files.pop(),
+            contents = grunt.file.read(file.file),
+            version = file.version;
+
+        grunt.log.subhead(version);
+        grunt.log.writeln(contents);
+        output += version + '\n' + contents + '\n\n';
+
+        grunt.config.set('releaseNotes.notes', output);
+    });
+
+    // Register simple tasks first, so that grunt doesn't look for the, "since" config property
+    grunt.registerTask('releaseNotes:since', function(start, stop) {
+        var display = start ? false : true,
+            files = getFiles().sort(versionSort),
+            output = '';
+
+        _.each(files, function(file) {
+            var contents,
+                version;
+            if (display) {
+                contents = grunt.file.read(file.file);
+                version = file.version;
+                grunt.log.subhead(version);
+                grunt.log.writeln(contents);
+                output += version + '\n' + contents + '\n\n';
+            }
+            if (start === file.version) {
+                display = true;
+            }
+            if (stop === file.version) {
+                display = false;
+            }
+        });
+
+        grunt.config.set('releaseNotes.notes', output);
+    });
+
+    function getFiles () {
+        var versionSeparator = grunt.config.get('releaseNotes.fileSeparator') || config.versionSeparator,
+            directory = grunt.config.get('releaseNotes.notesDirectory') || config.notesDirectory,
+            files = [];
+
+        grunt.file.recurse(directory, function (file) {
+            var version = path.basename(file, '.md'), parts;
+            version = version.substring(0, version.indexOf(versionSeparator));
+            parts = version.split('.');
+            files.push({version : version, parts : parts, file : file});
+        });
+
+        return files;
+    }
+
     grunt.registerMultiTask('releaseNotes', 'read in files to make release notes', function() {
         var config = require('./config'),
             options = this.options({
                 versionSeparator : config.versionSeparator,
                 notesDirectory : config.notesDirectory,
                 notesSuffix : 'md',
-                notesField : 'notes',
+                notesField : 'notes'
             }),
             readmePath = this.data.dest,
             templatePath = this.data.src,

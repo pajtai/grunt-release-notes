@@ -8,12 +8,7 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
-    // load all grunt tasks
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-    // Actually load this plugin's task(s).
-
     grunt.loadTasks('tasks');
-
     grunt.initConfig({
         releaseNotes : {
             main : {
@@ -22,6 +17,8 @@ module.exports = function (grunt) {
                 baseLinkPath : 'https://github.com/pajtai/grunt-release-notes/tree/master/'
             }
         },
-        warning : 'Do not modify directly. This file is compiled from a template.'
+        warning : {
+            'readme' : 'Do not modify directly. This file is compiled from a template.'
+        }
     });
 };

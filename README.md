@@ -53,6 +53,14 @@ grunt.initConfig({
 * `dst` - If this field and `templatePath` are both defined, then the grunt template at `templatePath` will be used to generate the README at `readmePath` using `grunt.config` as the template data.
 * `baseLinkPath` - The base of the path that will be used to generate the links to the release notes. For example : `https://github.com/Solid-Interactive/masseuse/blob/master/`
 
+## releaseNotes:since:[from]:[until] task
+
+`grunt releaseNotes:since:[start]:[finish]` will show the release notes starting after the start version and ending on the finish version. If no finish is provided, notes will be provided until the latest version. These are displayed and the string is set on the grunt config as `releaseNotes.notes` for use in templating.
+
+## releaseNotes:latest task
+
+`releaseNotes:latest` will display the release notes for the latest version, and it will add that string to the grunt config as `releaseNotes.notes` for use in templating.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
@@ -60,6 +68,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 * 0.0.0 - 2014-02-20 - [initial release](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.0.0_2014-02-20.md)
 * 0.0.1 - 2014-02-22 - [patches](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.0.1_2014-02-22.md)
 * 0.0.2 - 2014-02-22 - [patches](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.0.2_2014-02-22.md)
+* 0.1.0 - 2014-02-24 - [features](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.1.0_2014-02-24.md)
 
 
-_Do not modify directly. This file is compiled from a template._
+_Do not modify directly. This file is compiled from a template. Created: 2014-02-24 05:17:53_
