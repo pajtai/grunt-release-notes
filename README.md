@@ -69,6 +69,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 * 0.0.1 - 2014-02-22 - [patches](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.0.1_2014-02-22.md)
 * 0.0.2 - 2014-02-22 - [patches](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.0.2_2014-02-22.md)
 * 0.1.0 - 2014-02-24 - [features](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.1.0_2014-02-24.md)
+* 0.1.1-test - 2014-03-06 - [patches](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.1.1-test_2014-03-06.md)
+* 0.1.1 - 2014-03-06 - [patches](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.1.1_2014-03-06.md)
+* 0.1.2 - 2014-09-23 - [patches](https://github.com/pajtai/grunt-release-notes/tree/master/release_notes/0.1.2_2014-09-23.md)
 
 
-_Do not modify directly. This file is compiled from a template. Created: 2014-02-24 05:17:53_
+_Do not modify directly. This file is compiled from a template. Created: 2014-09-23 03:13:56_
