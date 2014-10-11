@@ -1,7 +1,8 @@
 {
     "node" : true,
     "globals" : {
-        "module" : true
+        "describe" : false,
+        "it" : false
     },
     "curly": true,
     "quotmark": "single",

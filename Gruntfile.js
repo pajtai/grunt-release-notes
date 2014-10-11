@@ -15,9 +15,6 @@ module.exports = function (grunt) {
                 src : 'templates/README.template.md',
                 dest : 'README.md',
                 baseLinkPath : 'https://github.com/pajtai/grunt-release-notes/tree/master/'
-            },
-            test : {
-                notesDirectory : 'test/fixtures'
             }
         },
 
